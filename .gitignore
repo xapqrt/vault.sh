@@ -1,0 +1,52 @@
+# ---- Python cache / bytecode ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+
+# ---- Packaging / build artifacts ----
+build/
+dist/
+*.egg-info/
+.eggs/
+wheelhouse/
+
+# ---- IDE / Editor ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+
+# ---- Test / coverage artifacts ----
+.pytest_cache/
+.coverage*
+coverage.xml
+htmlcov/
+.mypy_cache/
+
+# ---- Logs & backups ----
+*.log
+*.backup
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!*.example
+
+# ---- Vault data (binary / secrets) ----
+vault_data/*
+!vault_data/.gitkeep
+
+# Keep README/docs/tests
+
+# ---- Misc ----
+*.tmp
+*.bak
