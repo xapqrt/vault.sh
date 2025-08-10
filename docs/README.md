@@ -47,6 +47,25 @@ python -m src.main init --force
 
 That’s it. See “Full Details” below only if you want more context.
 
+### One-Click Run / Install
+
+Unix/macOS quick install (reviews script first recommended):
+```
+curl -fsSL https://raw.githubusercontent.com/xapqrt/vault.sh/main/scripts/install.sh | bash
+```
+Windows PowerShell quick install:
+```
+powershell -NoProfile -ExecutionPolicy Bypass -Command "iwr https://raw.githubusercontent.com/xapqrt/vault.sh/main/scripts/install.ps1 -UseBasicParsing | iex"
+```
+Local dev one-click (already cloned):
+```
+./scripts/oneclick.sh    # or scripts/oneclick.ps1 on Windows
+```
+After first release tag (e.g. v0.1.0), a direct binary URL will appear at:
+```
+https://github.com/xapqrt/vault.sh/releases/latest
+```
+
 
 This codebase is a **pared-down, auditable implementation** of a simple encrypted “vault” with:
 
