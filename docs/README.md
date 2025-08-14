@@ -148,6 +148,33 @@ Invoke via module:
 python -m src.main --help
 ```
 
+### How to Run (Windows PowerShell)
+
+1) Create and activate a virtual environment, install deps:
+
+```powershell
+python -m venv .venv
+./.venv/Scripts/Activate.ps1
+pip install -r config/requirements.txt
+```
+
+2) (Optional) Choose a custom vault file location:
+
+```powershell
+$env:VAULT_PATH = "C:/path/to/myvault.dat"
+```
+
+3) Initialize and use the CLI:
+
+```powershell
+python -m src.main init                 # create real vault
+python -m src.main add-note             # add a note
+python -m src.main list                 # list notes
+python -m src.main show 1               # show a note
+python -m src.main info                 # metadata
+python -m src.main pw-strength "Passw0rd!@#"  # check strength
+```
+
 ### Initialise Vault
 ```
 python -m src.main init
@@ -176,6 +203,26 @@ python -m src.main list
 python -m src.main show 1
 ```
 Prompts for the password, then prints the full note body.
+
+Read-once notes:
+```
+python -m src.main note create --title "Secret" --content "One-shot" --read-once
+python -m src.main note read 1  # prints and removes, shows "🔥 File Burned"
+```
+
+### Stealth/Decoy Vault Mode
+
+Create a decoy vault protected by a separate password. When you enter the decoy password in any command, the tool transparently opens the decoy vault; entering the real password opens the real vault. The real vault remains fully hidden when the decoy is in use.
+
+```
+python -m src.main init            # create real vault
+python -m src.main init-decoy      # create decoy vault (you'll be prompted for a decoy password)
+python -m src.main list            # enter either password; you'll see the corresponding vault
+```
+
+Notes:
+- The decoy vault file sits next to the real one, named like: vault.decoy.dat
+- The decoy initializer seeds harmless, realistic dummy entries by default.
 
 ### Password Strength Check
 ```
@@ -211,6 +258,12 @@ storage.save('master', data)
 Run all tests:
 ```
 pytest -q
+```
+
+Windows (using the venv explicitly):
+
+```powershell
+./.venv/Scripts/python.exe -m pytest -q
 ```
 
 Selected test groups:
@@ -288,6 +341,7 @@ Ideas:
 2. Implement attachment encryption.
 3. Add JSON export/import commands.
 4. Integrate Argon2id via `argon2-cffi` for stronger key derivation.
+5. Stealth vault enhancements: configurable decoy file name, multiple decoys.
 
 ---
 ## 13. License
